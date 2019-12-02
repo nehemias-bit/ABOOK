@@ -6,6 +6,7 @@
 **ABOOK** is intened to give the user the ability to create a reading list in a visually appealing web app that they can use to keep track of books they've read and are planning on reading. The user can add a book and as they read it, if they come across something note worthy that they feel they should remember long after the book has ended, they can add memorable notes specific to that book. If the user starts a book but half way through they realize they are not interested in it, they can delete it from their list. The app will help the user track the books they want to read and the books they have already read.
 
 ## MVP
+***
 My MVP goals for this project are:
 
 **1)** A JSON API created with Ruby on Rails that incorporates:
@@ -27,14 +28,39 @@ My MVP goals for this project are:
 **5)** App will be deployed using Heroku and surge.
 
 ## Post MVP
-
+***
 **1)** The user should have the ability to share their list or individual books from their list with other users.
 
 **2)** The user should be able to click on an authors name and view other books by that author.
 
 ## Entity Relational Diagram (ERD
+***
 
 ![ERD](https://i.imgur.com/zIoBXzD.png)
+
+## Wireframe
+***
+![ERD](https://i.imgur.com/rppMI6g.png)
+![ERD](https://i.imgur.com/ysYh8gg.png)
+![ERD](https://i.imgur.com/aotjvoo.png)
+![ERD](https://i.imgur.com/8ahkY1n.png)
+![ERD](https://i.imgur.com/mkn6xzt.png)
+![ERD](https://i.imgur.com/E2JTaVB.png)
+***
+
+## Component Heirarchy
+
+* < Header />
+  * < EditProfilePicForm />
+* < Login />
+* < Rgister />
+* < Main />
+  * < NewBookForm />
+* < SpecificBook />
+* < BookSpots /> 
+* < Footer />
+
+
 
 <!-- Headings -->
 # Heading 1
