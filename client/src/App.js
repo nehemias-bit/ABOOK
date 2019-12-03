@@ -23,7 +23,12 @@ class App extends React.Component {
         username: "",
         password: ""
       },
-      currentUser: null
+      currentUser: null,
+      bookForm: {
+        book_cover: "",
+        author_name: "",
+        book_title: ""
+      }
     }
   }
 
@@ -65,6 +70,17 @@ class App extends React.Component {
     }))
   }
 
+  handleBookCreateChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    this.setState(prevState => ({
+      authFormData: {
+        ...prevState.authFormData,
+        [name]: value
+      }
+    }))
+  }
+
   handleLogout = () => {
     localStorage.removeItem("authToken");
     this.setState({
@@ -83,6 +99,7 @@ class App extends React.Component {
           <Route exact path="/" render={() => (<Login handleLoginChange={this.handleLoginChange} loginSubmit={this.loginSubmit}/>)}/>
         }
         <Route path="/register" render={() => (<Register authFormData={this.state.authFormdata} handleChange={this.handleChange} handleRegister={this.handleRegister} />)} />
+        <Route path="add-book" render={() => (<CreateBook handleChange={this.handleBookCreateChange}/>)}/>
       </div>
     );
   }

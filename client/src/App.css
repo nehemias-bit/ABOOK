@@ -5,7 +5,7 @@
 }
 
 #logged-out-header-sub {
-  width: 40%;
+  width: 41%;
   display: flex;
   margin-left: 20px;
   align-items: center;
@@ -15,12 +15,141 @@
   width: 25%;
 }
 
+#logged-out-header-sub a {
+  text-decoration: none;
+}
+
 #logged-out-header-sub h1 {
   margin: 0 0 0 20px;
+  color: #040989;
+}
+
+#login-form-div {
+  width: 36%;
+  height: 321px;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: white;
 }
 
 #login-form {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  width: 40%;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#login-form img {
+  width: 18%;
+  margin-left: 323px;
+}
+
+#login-form input {
+  width: 53%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  height: 31px;
+  border-radius: 3px;
+  border: 1px solid;
+  font-size: 18px;
+}
+
+#login-form button {
+  width: 63%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  height: 53px;
+  border-radius: 3px;
+  border: 1px solid black;
+  font-size: 36px;
+  color: #787DFF;
+}
+
+#login-form a {
+  font-size: 24px;
+  text-decoration: none;
+  border-bottom: 2px solid black;
+  width: 22%;
+  color: black;
+  margin: 0 auto;
+}
+
+#login-form h1 {
+  margin-bottom: 10;
+  color: #040989;
+}
+
+#login-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://images.pexels.com/photos/694740/pexels-photo-694740.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: 100%;
+}
+
+#login-page h2 {
+  color: white;
+  width: 60%;
+}
+
+#register-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://images.pexels.com/photos/1726246/pexels-photo-1726246.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: 100%;
+}
+
+#register-form-div {
+  width: 36%;
+  height: 425px;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  align-items: inherit;
+}
+
+#register-form {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#register-form input {
+  width: 76%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  height: 31px;
+  border-radius: 3px;
+  border: 1px solid;
+  font-size: 18px;
+}
+
+#register-form button {
+  width: 63%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  height: 53px;
+  border-radius: 11px;
+  border: 1px solid black;
+  font-size: 30px;
+  color: #787DFF;
+}
+
+#login-page h5 {
+  width: 25%;
+  margin: 0;
+}
+
+#register-form img {
+  width: 18%;
+  margin-left: 323px;
 }
