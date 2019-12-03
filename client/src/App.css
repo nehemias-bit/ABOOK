@@ -1,1 +1,26 @@
+#logged-out-header-main {
+  height: 102px;
+  width: 100%;
+  background-color: #B6A68A;
+}
 
+#logged-out-header-sub {
+  width: 40%;
+  display: flex;
+  margin-left: 20px;
+  align-items: center;
+}
+
+#logged-out-header-sub img {
+  width: 25%;
+}
+
+#logged-out-header-sub h1 {
+  margin: 0 0 0 20px;
+}
+
+#login-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  width: 40%;
+}
