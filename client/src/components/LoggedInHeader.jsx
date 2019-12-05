@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-export default function Header(props) {
+export default function LoggedInHeader(props) {
   return (
     <div id="header">
-      <button onClick={props.handleLogout}>Logout</button>
+      <Link to="/login"><button onClick={props.handleLogout}>Logout</button></Link>
     </div>
   )
 }

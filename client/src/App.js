@@ -2,13 +2,19 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { Route } from 'react-router-dom';
 import './App.css';
-import { registerUser } from './services/api-helper';
+import { registerUser, updateBook } from './services/api-helper';
 import { loginUser } from './services/api-helper';
+import { createBook } from './services/api-helper';
+import { verifyUser } from './services/api-helper';
+import { showAllBooks } from './services/api-helper';
+import { deleteBook } from './services/api-helper';
+import { upateBook } from './services/api-helper';
 import Register from './components/Register';
 import Login from './components/Login';
 import HomePage from './components/HomePage';
-import LoggedInHeader from './components/LoggedInHeader';
 import LoggedOutHeader from './components/LoggedOutHeader';
+import CreateBook from './components/CreateBook';
+import IndividualBook from './components/IndividualBook';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +23,7 @@ class App extends React.Component {
       authFormData: {
         username: "",
         user_img: "",
-        password:""
+        password: ""
       },
       loginForm: {
         username: "",
@@ -27,9 +33,33 @@ class App extends React.Component {
       bookForm: {
         book_cover: "",
         author_name: "",
-        book_title: ""
-      }
+        book_title: "",
+        notes: "",
+        user_id: ""
+      },
+      newBook: []
     }
+  }
+
+  handleVerify = async () => {
+    const currentUser = await verifyUser();
+    if (currentUser) {
+      this.setState({ currentUser })
+    }
+    return currentUser
+  }
+
+  async componentDidMount() {
+    await this.handleVerify();
+    if (this.state.currentUser) {
+      const allBooks = await showAllBooks();
+      this.setState({
+        newBook: allBooks
+      })
+    } else {
+      this.props.history.push("/login")
+    }
+
   }
 
   handleChange = (e) => {
@@ -54,15 +84,20 @@ class App extends React.Component {
   loginSubmit = async (e) => {
     e.preventDefault();
     const currentUser = await loginUser(this.state.loginForm);
-    this.setState({
-      currentUser
-    })
+    this.setState(prevState => ({
+      currentUser,
+      bookForm: {
+        ...prevState.bookForm,
+        user_id: currentUser.id
+      }
+    }))
+    this.props.history.push("/")
   }
 
   handleLoginChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    this.setState(prevState =>({
+    this.setState(prevState => ({
       loginForm: {
         ...prevState.loginForm,
         [name]: value
@@ -74,11 +109,20 @@ class App extends React.Component {
     let name = e.target.name;
     let value = e.target.value;
     this.setState(prevState => ({
-      authFormData: {
-        ...prevState.authFormData,
+      bookForm: {
+        ...prevState.bookForm,
         [name]: value
       }
     }))
+  }
+
+  bookCreateSubmit = async (e) => {
+    e.preventDefault();
+    let book = await createBook(this.state.bookForm);
+    this.setState(prevState => ({
+      newBook: [book, ...prevState.newBook]
+    }))
+    this.props.history.push("/")
   }
 
   handleLogout = () => {
@@ -88,18 +132,62 @@ class App extends React.Component {
     })
   }
 
+  deleteTheBook = async (id) => {
+    await deleteBook(id);
+    this.setState(prevState => ({
+      newBook: prevState.newBook.filter(book => {
+        return book.id !== id
+      })
+    }))
+    this.props.history.push("/")
+  }
+
+  updateBookContent = async (id, data) => {
+    const updating = await updateBook(id, data);
+    this.setState(prevState => ({
+      newBook:
+        prevState.newBook[id] === updating.id ? updating : this.state.newBook
+
+    }))
+
+  }
+
   render() {
     return (
       <div className="app">
         {
-        this.state.currentUser ? <LoggedInHeader handleLogout={this.handleLogout}/> : <LoggedOutHeader/>
+          !this.state.currentUser &&
+          <>
+            <LoggedOutHeader />
+            <Route path="/login" render={() => (<Login handleLoginChange={this.handleLoginChange} loginSubmit={this.loginSubmit} />)} />
+            <Route path="/register" render={() => (<Register authFormData={this.state.authFormdata} handleChange={this.handleChange} handleRegister={this.handleRegister} />)} />
+          </>
         }
-        {
-          this.state.currentUser ? <HomePage /> :
-          <Route exact path="/" render={() => (<Login handleLoginChange={this.handleLoginChange} loginSubmit={this.loginSubmit}/>)}/>
+
+
+
+        {this.state.currentUser &&
+          <>
+            <Route exact path="/"
+              render={(props) => (
+                <HomePage
+                  newBook={this.state.newBook}
+                  handleLogout={this.handleLogout} currentUser={this.state.currentUser} />)} />
+
+            <Route exact path="/add-book/:id" render={(props) => (
+              <CreateBook
+                currentUser={this.state.currentUser}
+                handleBookCreateChange={this.handleBookCreateChange}
+                bookCreateSubmit={this.bookCreateSubmit}
+                bookForm={this.state.bookForm} handleLogout={this.handleLogout}
+                id={props.match.params.id} />)} />
+
+            <Route exact path="/books/:id" render={(props) => (<IndividualBook id={props.match.params.id} handleLogout={this.handleLogout} deleteTheBook={this.deleteTheBook} handleBookCreateChange={this.handleBookCreateChange} updateBookContent={this.updateBookContent} bookForm={this.state.bookForm} />)}/>
+          </>
         }
-        <Route path="/register" render={() => (<Register authFormData={this.state.authFormdata} handleChange={this.handleChange} handleRegister={this.handleRegister} />)} />
-        <Route path="add-book" render={() => (<CreateBook handleChange={this.handleBookCreateChange}/>)}/>
+
+
+
       </div>
     );
   }
