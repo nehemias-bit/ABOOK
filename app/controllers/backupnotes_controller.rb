@@ -1,10 +1,9 @@
-class NotesController < ApplicationController
+class backupNotesController < ApplicationController
   before_action :set_note, only: [:show, :update, :destroy]
 
   # GET /notes
   def index
-    @book = Book.find(params[:book_id])
-    @notes = @book.notes
+    @notes = Note.all
 
     render json: @notes
   end
@@ -16,13 +15,12 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @book=Book.find(params[:book_id])
-    @note=@book.notes.new(note_params)
-    # @note = Book.find(params[:book_id]).notes.new(note_params)
+    @note = Note.new(note_params)
+
     if @note.save
-      render json: @note
+      render json: @note, status: :created, location: @note
     else
-      render json: @note.errors.full_messages, status: :unprocessable_entity
+      render json: @note.errors, status: :unprocessable_entity
     end
   end
 
@@ -48,6 +46,6 @@ class NotesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def note_params
-      params.require(:note).permit(:note, :book_id);
+      params.require(:note).permit(:note, :books_id)
     end
 end

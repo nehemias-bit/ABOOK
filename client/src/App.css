@@ -154,6 +154,25 @@
   margin-left: 323px;
 }
 
-/* #userid-input {
-  display: none;
-} */
+#looged-in-header {
+  height: 100px;
+  background-color: #B6A68A;
+}
+
+#user-img-name-div {
+  display: grid;
+  grid-template-columns: 21% 21%;
+  height: 100%;
+  grid-column-gap: 24px;
+  align-items: center;
+}
+
+#user-img {
+  width: 40%;
+  border-radius: 10px;
+}
+
+#img-div {
+  width: 100%;
+  text-align: right;
+}

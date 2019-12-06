@@ -17,7 +17,7 @@ export default class HomePage extends Component {
     return (
       <>
         <div>
-        <LoggedInHeader handleLogout={this.props.handleLogout} /> 
+          <LoggedInHeader handleLogout={this.props.handleLogout} currentUser={this.props.currentUser}/> 
          <h1>Next Books</h1>
          <Link to={`/add-book/${this.props.currentUser.id}`}><button>Add Book</button></Link>
        </div>

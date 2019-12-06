@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// const baseUrl = "https://abook-api.herokuapp.com/"
+
 const baseUrl = 'http://localhost:3000'
 
 const api = axios.create({
@@ -32,6 +34,13 @@ export const verifyUser = async () => {
   }
   return false
 }
+
+//=========Udate User===========//
+export const updateUser = async (userId, userData) => {
+  const response = await api.put(`/users_img/${userId}`, { user: userData });
+  return response.data
+}
+
 
 //======Create Book===========//
 export const createBook = async (bookData) => {
