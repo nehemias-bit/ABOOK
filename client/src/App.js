@@ -2,19 +2,21 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { Route } from 'react-router-dom';
 import './App.css';
-import { registerUser, updateBook } from './services/api-helper';
+import { registerUser } from './services/api-helper';
 import { loginUser } from './services/api-helper';
 import { createBook } from './services/api-helper';
 import { verifyUser } from './services/api-helper';
 import { showAllBooks } from './services/api-helper';
 import { deleteBook } from './services/api-helper';
-import { upateBook } from './services/api-helper';
+import { createNotes } from './services/api-helper';
+import { getOneBook } from './services/api-helper';
 import Register from './components/Register';
 import Login from './components/Login';
 import HomePage from './components/HomePage';
 import LoggedOutHeader from './components/LoggedOutHeader';
 import CreateBook from './components/CreateBook';
 import IndividualBook from './components/IndividualBook';
+import CreateNotes from './components/CreateNotes';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,10 +36,14 @@ class App extends React.Component {
         book_cover: "",
         author_name: "",
         book_title: "",
-        notes: "",
         user_id: ""
       },
-      newBook: []
+      newBook: [],
+      noteForm: {
+        note: ""
+      },
+      notes: [],
+      currentBook: null
     }
   }
 
@@ -60,6 +66,14 @@ class App extends React.Component {
       this.props.history.push("/login")
     }
 
+
+  }
+
+  getCurrentBook = async (id) => {
+    const theBook = await getOneBook(id);
+    this.setState({
+      currentBook: theBook
+    })
   }
 
   handleChange = (e) => {
@@ -142,15 +156,30 @@ class App extends React.Component {
     this.props.history.push("/")
   }
 
-  updateBookContent = async (id, data) => {
-    const updating = await updateBook(id, data);
+  handleNoteCreateChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
     this.setState(prevState => ({
-      newBook:
-        prevState.newBook[id] === updating.id ? updating : this.state.newBook
-
+      noteForm: {
+        ...prevState.noteForm,
+        [name]: value
+      }
     }))
-
   }
+
+  createNotesSubmit = async (e) => {
+    e.preventDefault();
+    const id = this.state.currentBook
+    console.log("submitting new note");
+    console.log(this.state.currentBook);
+    console.log(this.state.noteForm);
+    let note = await createNotes(id, this.state.noteForm);
+    this.setState(prevState => ({
+      notes: [note, ...prevState.notes]
+    }))
+    this.props.history.push("/books/:id")
+  }
+
 
   render() {
     return (
@@ -182,7 +211,9 @@ class App extends React.Component {
                 bookForm={this.state.bookForm} handleLogout={this.handleLogout}
                 id={props.match.params.id} />)} />
 
-            <Route exact path="/books/:id" render={(props) => (<IndividualBook id={props.match.params.id} handleLogout={this.handleLogout} deleteTheBook={this.deleteTheBook} handleBookCreateChange={this.handleBookCreateChange} updateBookContent={this.updateBookContent} bookForm={this.state.bookForm} />)}/>
+            <Route exact path="/books/:id" render={(props) => (<IndividualBook id={props.match.params.id} handleLogout={this.handleLogout} deleteTheBook={this.deleteTheBook} handleNoteCreateChange={this.handleNoteCreateChange} createNotesSubmit={this.createNotesSubmit} getCurrentBook={this.getCurrentBook} currentBook={this.state.currentBook} />)} />
+
+            <Route path="/add-notes/:id" render={(props) => (<CreateNotes noteForm={this.state.noteForm} id={props.match.params.id} createNotesSubmit={this.createNotesSubmit} handleNoteCreateChange={this.handleNoteCreateChange} />)} />
           </>
         }
 

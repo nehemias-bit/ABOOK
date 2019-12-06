@@ -59,8 +59,8 @@ export const deleteBook = async (id) => {
   return response.data
 }
 
-//======Update Book=========//
-export const updateBook = async (id,data) => {
-  const response = await api.put(`/books/${id}`,data );
+//======Create Notes=========//
+export const createNotes = async (id, notes) => {
+  const response = await api.post(`/books/${id}/notes`, notes);
   return response.data
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoggedInHeader from './LoggedInHeader';
 import { getOneBook } from '../services/api-helper';
+import { Link } from 'react-router-dom';
 
 
 
@@ -14,29 +15,25 @@ export default class IndividualBook extends Component {
   }
 
   async componentDidMount() {
-    const theBook = await getOneBook(this.props.id);
-    this.setState({
-      currentBook: theBook
-    })
+   const a = await this.props.getCurrentBook(this.props.id);
+    console.log(this.props.currentBook)
+    console.log(a)
   }
 
 
 
   render() {
-    const currentBook = this.state.currentBook;
     return (
       <>
-        <LoggedInHeader handleLogout={this.props.handleLogout} />
-        {
-          this.props.bookForm &&
+        { this.props.currentBook &&
+          <>
+      <LoggedInHeader handleLogout={this.props.handleLogout} /> 
       <div>
-          <img src={currentBook.book_cover} alt="book cover" />
-          <form onSubmit={() => (this.props.updateBookContent(currentBook.id, this.props.bookForm))}>
-          <textarea name="notes" value={this.props.bookForm.notes} onChange={this.props.handleBookCreateChange}></textarea>
-          <button>Add notes</button>
-          </form>
-      <button onClick={() => (this.props.deleteTheBook(this.props.id))}>Delete </button>
+      <img src={this.props.currentBook.book_cover} alt="book cover" />
+          <button onClick={() => (this.props.deleteTheBook(this.props.id))}>Delete </button>
+          <Link to={`/add-notes/${this.props.currentBook.id}`}><button>Add</button></Link>
       </div>
+         </>
         }
       </>  
     )
