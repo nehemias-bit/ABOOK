@@ -23,7 +23,7 @@ export default class LoggedInHeader extends Component {
 
   render() {
     return (
-      <div id="looged-in-header">  
+      <div id="logged-in-header">  
         <div id="user-img-name-div">
           {
             this.props.currentUser &&

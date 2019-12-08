@@ -11,6 +11,8 @@ import { deleteBook } from './services/api-helper';
 import { createNotes } from './services/api-helper';
 import { getOneBook } from './services/api-helper';
 import { updateUser } from './services/api-helper';
+import { updateABook } from './services/api-helper';
+import { deleteNote } from './services/api-helper';
 import Register from './components/Register';
 import Login from './components/Login';
 import HomePage from './components/HomePage';
@@ -19,6 +21,7 @@ import CreateBook from './components/CreateBook';
 import IndividualBook from './components/IndividualBook';
 import CreateNotes from './components/CreateNotes';
 import EditUser from './components/EditUser';
+import UpdateBook from './components/UpdateBook';
 
 class App extends React.Component {
   constructor(props) {
@@ -46,9 +49,7 @@ class App extends React.Component {
       },
       currentBook: null,
       userForm: {
-        // username: "",
         user_img: ""
-        // password: ""
       }
     }
   }
@@ -184,6 +185,16 @@ class App extends React.Component {
     this.props.history.push(`/books/${this.state.currentBook.id}`)
   }
 
+  deleteNote = async (noteId) => {
+    await deleteNote(this.state.currentBook.id, noteId);
+    this.setState(prevState => ({
+      currentBook: prevState.currentBook.notes.filter(note => {
+        return note.id !== noteId
+      })
+    }))
+    this.props.history.push(`/books/${this.state.currentBook.id}`)
+  }
+
   handleUserChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -202,6 +213,25 @@ class App extends React.Component {
     this.props.history.push("/")
   }
 
+  handleBookUpdateChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    this.setState(prevState => ({
+      bookForm: {
+        ...prevState.bookForm,
+        [name]: value
+      }
+    }))
+  }
+
+  bookUpdateSubmit = async (e) => {
+    e.preventDefault();
+    let book = await updateABook(this.state.currentBook.id, this.state.bookForm);
+    this.setState(prevState => ({
+      newBook: [book, ...prevState.newBook]
+    }))
+    this.props.history.push("/")
+  }
 
   render() {
     return (
@@ -233,11 +263,12 @@ class App extends React.Component {
               bookForm={this.state.bookForm} handleLogout={this.handleLogout}
               id={props.match.params.id} bookFormUserId={this.bookFormUserId}/>)} />
 
-          <Route path="/books/:id" render={(props) => (<IndividualBook id={props.match.params.id} handleLogout={this.handleLogout} deleteTheBook={this.deleteTheBook} handleNoteCreateChange={this.handleNoteCreateChange} createNotesSubmit={this.createNotesSubmit} getCurrentBook={this.getCurrentBook} currentBook={this.state.currentBook} currentUser={this.state.currentUser}/>)} />
+          <Route path="/books/:id" render={(props) => (<IndividualBook id={props.match.params.id} handleLogout={this.handleLogout} deleteTheBook={this.deleteTheBook} handleNoteCreateChange={this.handleNoteCreateChange} createNotesSubmit={this.createNotesSubmit} getCurrentBook={this.getCurrentBook} currentBook={this.state.currentBook} currentUser={this.state.currentUser} deleteNote={this.deleteNote}/>)} />
 
           <Route path="/books/:id/add-note" render={(props) => (<CreateNotes noteForm={this.state.noteForm} id={props.match.params.id} createNotesSubmit={this.createNotesSubmit} handleNoteCreateChange={this.handleNoteCreateChange} />)} />
           
-          <Route path="/users/:id" render={(props) => (<EditUser id={props.match.params.id} handleUserChange={this.handleUserChange} userForm={this.state.userForm} submitUserUpdate={this.submitUserUpdate}/>)}/>
+          <Route path="/users/:id" render={(props) => (<EditUser id={props.match.params.id} handleUserChange={this.handleUserChange} userForm={this.state.userForm} submitUserUpdate={this.submitUserUpdate} />)} />
+          <Route path="/books/:id/update" render={(props) => (<UpdateBook id={props.match.params.id} bookUpdateSubmit={this.bookUpdateSubmit} handleBookUpdateChange={this.handleBookUpdateChange} bookForm={this.state.bookForm} currentUser={this.state.currentUser}/>)}/>
           </>
         }
 

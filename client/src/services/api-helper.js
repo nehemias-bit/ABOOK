@@ -68,8 +68,21 @@ export const deleteBook = async (id) => {
   return response.data
 }
 
+//=======Update Book========//
+export const updateABook = async (id, bookData) => {
+  const response = await api.put(`/books/${id}`, bookData)
+  return response.data
+}
+
+
 //======Create Notes=========//
 export const createNotes = async (id, notes) => {
   const response = await api.post(`/books/${id}/notes`, notes);
+  return response.data
+}
+
+//=======Delete Note======//
+export const deleteNote = async (bookId, noteId) => {
+  const response = await api.delete(`/books/${bookId}/notes/${noteId}`);
   return response.data
 }

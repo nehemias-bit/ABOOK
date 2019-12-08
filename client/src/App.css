@@ -154,9 +154,13 @@
   margin-left: 323px;
 }
 
-#looged-in-header {
+#logged-in-header {
   height: 60px;
   background-color: #B6A68A;
+}
+
+#logged-in-header h1{
+  font-family: 'Oswald', sans-serif;
 }
 
 #user-img-name-div {
@@ -188,7 +192,7 @@
 }
 
 #user-img {
-  width: 11%;
+  width: 7%;
   border-radius: 10px;
   height: 50%;
   margin-right: 5px;
@@ -266,4 +270,311 @@
 
 #logout-edit-user a:hover {
   color: #040989;
+}
+
+#next-books {
+  margin-bottom: 0;
+}
+
+#add-book-div {
+  display: flex;
+  align-items: baseline;
+  width: 34%;
+  justify-content: space-evenly;
+}
+
+#add-book-div h1{
+  font-family: Lato,sans-serif;
+}
+
+#add-book-div span{
+  font-family: 'Baskervville', serif;
+}
+
+#add-book-div button {
+  border: none;
+  border-bottom: 2px solid red;
+  font-size: 15px;
+  font-family: 'Baskervville', serif;
+}
+
+.main-page-books {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.main-page-books img {
+width: 40%;
+}
+
+#book-author-title-main-page {
+  margin: 0;
+  display: flex;
+  width: 70%;
+}
+
+#book-author-title-main-page p {
+  margin: 0;
+  font-family: 'Baskervville', serif;
+  width: 56%;
+}
+
+#main-authors-name{
+  margin: 0;
+  margin-right: 10px;
+  font-family: Lato,sans-serif;
+}
+
+#cover-author-title-div {
+  width: 100%;
+  height: 300px;
+  text-align: center;
+}
+
+#cover-notes-section {
+  display: flex;
+  width: 77%;
+  height: 475px;
+  margin-top: 0px;
+  margin-left: 136px;
+  margin-bottom: 10px;
+}
+
+#individual-book-cover {
+  width: 50%;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: #FCF5F1;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#individual-book-cover img {
+  width: 64%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#notes {
+  width: 50%;
+  text-align: center;
+  background-color: #FCF5F1;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin-right: 20px;
+  word-wrap: break-word;
+  padding: 0 5px 0 5px;
+  overflow: scroll;
+  font-family: 'Baskervville', serif;
+}
+
+#notes button {
+  font-size: 15px;
+}
+
+#delete-note {
+  border-radius: 2px;
+  border: none;
+  background-color: #FCF5F1;
+}
+
+#delete-note:hover {
+  border: 1px solid black;
+  color: red;
+}
+
+#delete-note:focus {
+  outline: none;
+}
+
+#add-note {
+  border-radius: 2px;
+  border: none;
+  background-color: #FCF5F1;
+  margin-top: 10px;
+}
+
+#add-note:hover {
+  border: 1px solid black;
+  color: #040989;
+}
+
+#add-note:focus {
+  outline: none;
+}
+
+#edit-note {
+  border-radius: 2px;
+  border: none;
+  background-color: #FCF5F1;
+  margin-right: 5px;
+}
+
+#edit-note:hover {
+  border: 1px solid black;
+  color: #040989;
+}
+
+#edit-note:focus {
+  outline: none;
+}
+
+#delete-book {
+  width: 23%;
+  border: 2px solid black;
+  font-size: 15px;
+  background-color: #FCF5F1;
+  border-radius: 2px;
+  margin-left: 73px;
+}
+
+#delete-book:hover {
+  border: 1px solid black;
+  color: red;
+}
+
+#delete-book:focus {
+  outline: none;
+}
+
+#update-book {
+  margin-left: 10px;
+  width: 124%;
+  border: 2px solid black;
+  font-size: 15px;
+  background-color: #FCF5F1;
+  border-radius: 2px;
+}
+
+#update-book:hover {
+  border: 1px solid black;
+  color: #040989;
+}
+
+#update-book:focus {
+  outline: none;
+}
+
+#update-book-form {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 45%;
+  margin: 0 auto;
+  grid-column-gap: 10px;
+
+}
+
+#update-book-form input {
+  border: 1px solid black;
+  border-radius: 2px;
+  font-family: 'Baskervville', serif;
+  font-size: 12px;
+}
+
+#update-book-form input:focus {
+  outline: none;
+}
+
+#update-book-form button {
+  margin-left: 10px;
+  width: 124%;
+  border: 2px solid black;
+  font-size: 15px;
+  background-color: #FCF5F1;
+  border-radius: 2px;
+}
+
+#update-book-form button:hover {
+  border: 1px solid black;
+  color: #040989;
+}
+
+#update-book-form button:focus {
+  outline: none;
+}
+
+#create-note {
+  text-align: center;
+}
+
+#individual-book-cover-buttons {
+  display: flex;
+  margin-left: 37px;
+}
+
+#individual-book-title-author {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ margin-left: 20px;
+ margin-top: 30px;
+}
+
+#individual-book-title-author h3 {
+margin: 0 auto;
+line-height: 90px;
+font-family: 'Baskervville', serif;
+font-size: 30px;
+}
+
+#individual-book-title-author p {
+  font-family: 'Baskervville', serif;
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+#create-book-page {
+  height: 100vh;
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3665d206-7d64-46f2-978a-eec02f6a9436/d9c5l9w-06591461-498a-4a8d-a6f9-215043fe9edb.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzM2NjVkMjA2LTdkNjQtNDZmMi05NzhhLWVlYzAyZjZhOTQzNlwvZDljNWw5dy0wNjU5MTQ2MS00OThhLTRhOGQtYTZmOS0yMTUwNDNmZTllZGIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.KdY1a1ivzbxzF-IRjhCCkZtRnXv5Bol58BUAnZGBbPA");
+  background-size: 100%;
+}
+
+#create-book-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  width: 35%;
+  border: 2px solid black;
+  margin: 0 auto;
+  height: 300px;
+  margin-top: 150px;
+}
+
+#create-book-form input {
+  width: 50%;
+  margin: 0 auto;
+  height: 20px;
+  align-self: center;
+  font-family: 'Baskervville', serif;
+  border-radius: 2px;
+  border: none;
+}
+
+#create-book-form input:focus {
+outline: none;
+}
+
+#create-book-form button {
+  width: 38%;
+  border: 1px solid black;
+  font-size: 15px;
+  background-color: #FCF5F1;
+  border-radius: 2px;
+  height: 29px;
+  justify-self: center;
+  font-size: 18px;
+}
+
+#create-book-form button:hover {
+  border: 2px solid black;
+  color: #040989;
+}
+
+#create-book-form button:focus {
+outline: none;
 }
