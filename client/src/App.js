@@ -53,6 +53,7 @@ class App extends React.Component {
     }
   }
 
+
   handleVerify = async () => {
     const currentUser = await verifyUser();
     if (currentUser) {
@@ -66,13 +67,17 @@ class App extends React.Component {
     if (this.state.currentUser) {
       const allBooks = await showAllBooks();
       this.setState({
-        newBook: allBooks
+        newBook: allBooks,
+        bookForm: {
+          book_cover: "",
+          author_name: "",
+          book_title: "",
+          user_id: this.state.currentUser.id
+        }
       })
     } else {
       this.props.history.push("/login")
     }
-
-
   }
 
   getCurrentBook = async (id) => {
@@ -222,13 +227,13 @@ class App extends React.Component {
 
             <Route exact path="/add-book/:id" render={(props) => (
               <CreateBook
-                currentUser={this.state.currentUser}
-                handleBookCreateChange={this.handleBookCreateChange}
-                bookCreateSubmit={this.bookCreateSubmit}
-                bookForm={this.state.bookForm} handleLogout={this.handleLogout}
-                id={props.match.params.id} />)} />
+              currentUser={this.state.currentUser}
+              handleBookCreateChange={this.handleBookCreateChange}
+              bookCreateSubmit={this.bookCreateSubmit}
+              bookForm={this.state.bookForm} handleLogout={this.handleLogout}
+              id={props.match.params.id} bookFormUserId={this.bookFormUserId}/>)} />
 
-            <Route path="/books/:id" render={(props) => (<IndividualBook id={props.match.params.id} handleLogout={this.handleLogout} deleteTheBook={this.deleteTheBook} handleNoteCreateChange={this.handleNoteCreateChange} createNotesSubmit={this.createNotesSubmit} getCurrentBook={this.getCurrentBook} currentBook={this.state.currentBook} />)} />
+          <Route path="/books/:id" render={(props) => (<IndividualBook id={props.match.params.id} handleLogout={this.handleLogout} deleteTheBook={this.deleteTheBook} handleNoteCreateChange={this.handleNoteCreateChange} createNotesSubmit={this.createNotesSubmit} getCurrentBook={this.getCurrentBook} currentBook={this.state.currentBook} currentUser={this.state.currentUser}/>)} />
 
           <Route path="/books/:id/add-note" render={(props) => (<CreateNotes noteForm={this.state.noteForm} id={props.match.params.id} createNotesSubmit={this.createNotesSubmit} handleNoteCreateChange={this.handleNoteCreateChange} />)} />
           

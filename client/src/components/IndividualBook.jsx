@@ -13,17 +13,17 @@ export default class IndividualBook extends Component {
   }
 
   async componentDidMount() {
-   await this.props.getCurrentBook(this.props.id);
+    await this.props.getCurrentBook(this.props.id);
   }
 
 
 
   render() {
     return (
-      <>
-        { this.props.currentBook &&
+      <React.Fragment>
+        { this.props.currentBook && this.props.currentUser &&
           <>
-      <LoggedInHeader handleLogout={this.props.handleLogout} /> 
+      <LoggedInHeader handleLogout={this.props.handleLogout} currentUser={this.props.currentUser}/> 
       <div>
       <img src={this.props.currentBook.book_cover} alt="book cover" />
           <button onClick={() => (this.props.deleteTheBook(this.props.id))}>Delete </button>
@@ -31,7 +31,7 @@ export default class IndividualBook extends Component {
       </div>
          </>
         }
-      </>  
+      </React.Fragment>  
     )
   }
 }

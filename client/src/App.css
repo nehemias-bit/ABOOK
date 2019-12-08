@@ -155,24 +155,115 @@
 }
 
 #looged-in-header {
-  height: 100px;
+  height: 60px;
   background-color: #B6A68A;
 }
 
 #user-img-name-div {
-  display: grid;
-  grid-template-columns: 21% 21%;
   height: 100%;
-  grid-column-gap: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
 }
 
+#user-img-name-div h1{
+  margin: 0px 0px 0px 20px;
+  color: #040989;
+  background-image: linear-gradient(white, white);
+  background-size: 0 2px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all .2s ease-out;
+  display: inline;
+}
+
+#user-img-name-div h1:hover{
+  color: white;
+  background-size: 100% 2px, auto;
+}
+
+#user-img-name-div a{
+  text-decoration: none;
+  color: black;
+}
+
 #user-img {
-  width: 40%;
+  width: 11%;
   border-radius: 10px;
+  height: 50%;
+  margin-right: 5px;
+}
+
+#user-img:hover {
+  filter: grayscale(100%);
 }
 
 #img-div {
-  width: 100%;
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+#img-div a {
+  color: black;
+}
+
+#img-div p:hover {
+  color: white;
+  background-size: 100% 2px, auto;
+}
+
+#img-div p {
+  margin-left: 10px;
+  background-image: linear-gradient(white, white);
+  background-size: 0 2px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all .2s ease-out;
+  display: inline;
+  color: lightgray;
+}
+
+#img-a {
+  display: contents;
+}
+
+#logout-edit-user {
+  border: 2px solid;
+  width: 14%;
+  height: 66px;
+  position: relative;
+  left: 969px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-evenly;
+  align-items: center;
+  top: 20px;
+  border-radius: 10px;
+}
+
+#logout-button {
+  width: 87px;
+  height: 32px;
+  font-size: 20px;
+  color: #787DFF;
+  border-radius: 10px;
+}
+
+#logout-button:hover {
+  color: #040989;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#logout-edit-user a {
+  text-decoration: none;
+  color: black;
+  transition: color 2s;
+}
+
+#logout-edit-user a:hover {
+  color: #040989;
 }

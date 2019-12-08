@@ -22,10 +22,10 @@ export default class HomePage extends Component {
          <Link to={`/add-book/${this.props.currentUser.id}`}><button>Add Book</button></Link>
        </div>
         <div>
-          {
+          { this.props.newBook &&
             this.props.newBook.map(each => (
               <div key={each.id}>
-                <Link to={`/books/${each.id}`}><img src={each.book_cover} alt="book cover" /></Link>
+                <Link to={`/books/${each.id}`}><img src={each.book_cover} alt="book cover" id="main-page-book-cover"/></Link>
                 <h3>{each.author_name}</h3>
               </div>  
             ))
