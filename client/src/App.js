@@ -208,7 +208,7 @@ class App extends React.Component {
   }
 
   deleteNote = async (noteId) => {
-    debugger
+    // debugger
     await deleteNote(this.state.currentBook.id, noteId);
 
     this.setState(prevState => ({
@@ -217,6 +217,7 @@ class App extends React.Component {
       })
     }))
   }
+
 
   handleUserChange = (e) => {
     let name = e.target.name;
