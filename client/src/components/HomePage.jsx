@@ -30,13 +30,14 @@ export default class HomePage extends Component {
           <LoggedInHeader handleLogout={this.props.handleLogout} currentUser={this.props.currentUser} /> 
           <div id="add-book-div">
             <h1 id="next-books">Next Books<span>...</span></h1>
-            <Link to={`/add-book/${this.props.currentUser.id}`}><button>Add Book</button></Link>
+            <Link to={`/add-book/${this.props.currentUser.id}`}><button id="add-a-book">Add a Book</button></Link>
+            <Link to="/finished-reading"><button>The Finished Ones</button></Link>
           </div>  
        </div>
         <div ref="mainPageBooks" className="main-page-books">
           { this.props.newBook &&
-            this.props.newBook.map(each => (
-              <div key={each.id} id="cover-author-title-div">
+            this.props.newBook.filter(each => (this.props.currentUser.id === each.user_id)).map(each => (
+              <div key={each.id} id="cover-author-title-div" style={{display: each.finished === true ? 'none' : 'block' }} >
                 <Link to={`/books/${each.id}`}><img src={each.book_cover} alt="book cover" id="main-page-book-cover" /></Link>
                 <div id="book-author-title-main-page">
                 <p id="main-authors-name">{each.author_name}:</p>
@@ -45,20 +46,6 @@ export default class HomePage extends Component {
               </div>  
             ))
           }
-
-          {
-            this.childrenCount <= 10 ?
-            this.props.newBook.map(each => (
-              <div key={each.id} id="cover-author-title-div">
-                <Link to={`/books/${each.id}`}><img src={each.book_cover} alt="book cover" id="main-page-book-cover" /></Link>
-                <div id="book-author-title-main-page">
-                <p id="main-authors-name">{each.author_name}:</p>
-                <p>{each.book_title}</p>
-                </div>
-              </div>  
-            )) : null
-          }
-          
        </div>
       </>
     )

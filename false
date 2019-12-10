@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20191209165249_add_finished_to_books.rb

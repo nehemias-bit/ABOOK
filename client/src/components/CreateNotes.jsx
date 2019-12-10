@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function CreateNotes(props) {
   return (
-    <div id="create-note">
-      <form onSubmit={props.createNotesSubmit}>
+    <div id="create-note-div">
+      <form onSubmit={props.createNotesSubmit} id="create-note-form">
         <textarea name="note" value={props.noteForm.note} onChange={props.handleNoteCreateChange}></textarea>
-        <button>Add note</button>
+        <button>add note</button>
       </form>
     </div>
   )

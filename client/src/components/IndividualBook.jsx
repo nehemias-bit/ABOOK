@@ -14,6 +14,7 @@ export default class IndividualBook extends Component {
 
   async componentDidMount() {
     await this.props.getCurrentBook(this.props.id);
+    await this.props.updateBookIsFinished
   }
 
 
@@ -34,17 +35,17 @@ export default class IndividualBook extends Component {
                 <img src={this.props.currentBook.book_cover} alt="book cover" />
                 <div id="individual-book-cover-buttons">
                 <button id="delete-book" onClick={() => (this.props.deleteTheBook(this.props.id))}>Delete </button>
-                <Link to={`/books/${this.props.id}/update`}><button id="update-book">Update</button></Link>
+                <Link to={`/books/${this.props.id}/update`}><button id="update-book" style={{display: this.props.currentBook.finished === true ? 'none' : 'inline-block' }}>Update</button></Link>
+                <button style={{display: this.props.currentBook.finished === true ? 'none' : 'block' }} onClick={this.props.updateBookIsFinished}id="finished-button">Finished</button>
                 </div>  
             </div>
             <div id="notes">
               <Link to={`/books/${this.props.id}/add-note`}><button id="add-note">Add Notes</button></Link>
               {
-                this.props.currentBook.notes.map(each => (
+                this.props.currentBook.notes && this.props.currentBook.notes.map(each => (
                   <>
                    <p>{each.note}</p>
                    <button onClick={() => (this.props.deleteNote(each.id))} id="delete-note">delete note</button>
-                   <button id="edit-note">edit note</button>
                   </>   
                   )) 
                 }
