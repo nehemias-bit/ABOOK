@@ -9,12 +9,13 @@ export default function FinishedReading(props) {
         props.currentUser &&
       <>
         <LoggedInHeader handleLogout={props.handleLogout} currentUser={props.currentUser} />
-        <div className="finished-page-books">
+            <h1 id="completed">Completed<span>...</span></h1>
+          <div className="finished-page-books">
           {
             props.newBook.map(each => (
               each.finished === true ?
                 <div id="finished-cover-author-title-div">
-                  <Link to={`/books/${each.id}`}><img src={each.book_cover} /></Link>
+                  <Link to={`/books/${each.id}`}><img src={each.book_cover} alt="book cover"/></Link>
                   <div id="finished-book-author-title-main-page">
                     <p>{each.author_name}:</p>
                     <p>{each.book_title}</p>  

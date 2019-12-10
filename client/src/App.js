@@ -23,7 +23,7 @@ import CreateNotes from './components/CreateNotes';
 import EditUser from './components/EditUser';
 import UpdateBook from './components/UpdateBook';
 import FinishedReading from './components/FinishedReading';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
 class App extends React.Component {
   constructor(props) {
@@ -298,7 +298,7 @@ class App extends React.Component {
         }
 
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

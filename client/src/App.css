@@ -1,7 +1,7 @@
 #logged-out-header-main {
-  height: 102px;
+  height: 80px;
   width: 100%;
-  background-color: #B6A68A;
+  background-color: #58A363;
 }
 
 #logged-out-header-sub {
@@ -20,18 +20,18 @@
 }
 
 #logged-out-header-sub h1 {
-  margin: 0 0 0 20px;
-  color: #040989;
-  background-image: linear-gradient(white, white);
+  color: white;
+  background-image: linear-gradient(#35614A, #35614A);
   background-size: 0 2px, auto;
   background-repeat: no-repeat;
   background-position: center bottom;
   transition: all .2s ease-out;
   display: inline;
+  line-height: 100px;
 }
 
 #logged-out-header-sub h1:hover {
-  color: white;
+  color: #35614A;
   background-size: 100% 2px, auto;
 }
 
@@ -78,7 +78,7 @@ outline: none;
   border-radius: 3px;
   border: 1px solid black;
   font-size: 36px;
-  color: #787DFF;
+  color: #58A363;
 }
 
 #login-form button:hover {
@@ -102,7 +102,7 @@ outline: none;
 
 #login-form h1 {
   margin-bottom: 10;
-  color: #040989;
+  color: #35614A;
 }
 
 #login-page {
@@ -170,7 +170,7 @@ outline: none;
   border-radius: 11px;
   border: 1px solid black;
   font-size: 30px;
-  color: #787DFF;
+  color: #58A363;
 }
 
 #register-form button:hover {
@@ -195,7 +195,7 @@ color: #040989;
 
 #logged-in-header {
   height: 60px;
-  background-color: #B6A68A;
+  background-color: #58A363;
 }
 
 #logged-in-header h1{
@@ -211,8 +211,8 @@ color: #040989;
 
 #user-img-name-div h1{
   margin: 0px 0px 0px 20px;
-  color: #040989;
-  background-image: linear-gradient(white, white);
+  color: white;
+  background-image: linear-gradient(#35614A, #35614A);
   background-size: 0 2px, auto;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -221,7 +221,7 @@ color: #040989;
 }
 
 #user-img-name-div h1:hover{
-  color: white;
+  color: #35614A;
   background-size: 100% 2px, auto;
 }
 
@@ -307,12 +307,12 @@ color: #040989;
   width: 87px;
   height: 32px;
   font-size: 20px;
-  color: #787DFF;
+  color: #35614A;
   border-radius: 10px;
 }
 
 #logout-button:hover {
-  color: #040989;
+  color: black;
   border: 1px solid black;
   border-radius: 5px;
 }
@@ -370,14 +370,29 @@ outline: none;
 
 .finished-page-books {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
-  align-items: center;
-  margin-top: 50px;
+  margin-top: 40px;
+  height: 100vh;
+}
+
+#completed {
+  margin-bottom: 0;
+  margin-left: 20px;
+  font-family: 'Oswald', sans-serif !important;
+}
+
+#completed span {
+  font-family: 'Baskervville', serif;
 }
 
 .finished-page-books img {
-width: 40%;
+  width: 80%;
+}
+
+.finished-page-books img:hover {
+  border: 1px solid #35614A;
+  opacity: 0.5;
 }
 
 #finished-cover-author-title-div {
@@ -403,15 +418,19 @@ width: 40%;
 
 .main-page-books {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
-  align-items: baseline;
   margin-top: 50px;
   height: 100vh;
 }
 
 .main-page-books img {
-width: 40%;
+  width: 80%;
+}
+
+.main-page-books img:hover {
+  border: 1px solid #35614A;
+  opacity: 0.5;
 }
 
 #book-author-title-main-page {

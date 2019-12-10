@@ -30,7 +30,7 @@ export default class LoggedInHeader extends Component {
           <>
           <Link to="/"><h1>abook</h1></Link>    
           <div id="img-div">
-          <a href="#" id="img-a"><img src={this.props.currentUser.user_img} alt="users profile image" id="user-img"  onClick={() => this.hideLogOutAndEdit()}/></a>
+          <a href="#" id="img-a"><img src={this.props.currentUser.user_img} alt="users profile" id="user-img"  onClick={() => this.hideLogOutAndEdit()}/></a>
           <a href="#" onClick={() => this.showLogOutAndEdit()} id="username"><p>{this.props.currentUser.username}</p></a>
           </div>
           </>

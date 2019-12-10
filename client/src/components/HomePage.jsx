@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoggedInHeader from "./LoggedInHeader";
-import ReactDOM from 'react-dom';
 
 
 export default class HomePage extends Component {
@@ -13,10 +12,7 @@ export default class HomePage extends Component {
   }
 
   componentDidMount = () => {
-    let mainPageBooks = this.refs.mainPageBooks;
     let childrenCount = this.refs.mainPageBooks.children.length;
-    let countByClass = ReactDOM.findDOMNode(mainPageBooks).getElementsByClassName('main-page-books').length;
-    // console.log(countByClass)
     console.log(childrenCount)
   }
 

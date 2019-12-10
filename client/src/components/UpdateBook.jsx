@@ -1,5 +1,4 @@
 import React from 'react';
-import LoggedInHeader from './LoggedInHeader';
 
 export default function UpdateBook(props) {
   return (
