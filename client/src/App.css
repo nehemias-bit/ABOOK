@@ -1,3 +1,9 @@
+input {
+  padding-left: 5px;
+  box-sizing: border-box;
+}
+
+
 #logged-out-header-main {
   height: 80px;
   width: 100%;
@@ -126,6 +132,10 @@ outline: none;
   margin: 0px;
   color: white;
   width: 60%;
+}
+
+#edit-user {
+  min-height: 100vh;
 }
 
 #register-page {

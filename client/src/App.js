@@ -121,7 +121,7 @@ class App extends React.Component {
   }
 
   handleRegister = async (e) => {
-    e.preventDefault();await registerUser(this.state.authFormData)
+    e.preventDefault(); await registerUser(this.state.authFormData)
     this.props.history.push("/login")
   }
 
@@ -202,19 +202,23 @@ class App extends React.Component {
     e.preventDefault();
     const note = await createNotes(this.state.currentBook.id, { note: this.state.noteForm });
     this.setState(prevState => ({
-      currentBook: [note, ...prevState.currentBook]
+      currentBook: {
+        ...prevState.currentBook,
+        notes: [note, ...prevState.currentBook.notes]
+      }
     }))
     this.props.history.push(`/books/${this.state.currentBook.id}`)
   }
 
   deleteNote = async (noteId) => {
-    // debugger
     await deleteNote(this.state.currentBook.id, noteId);
-
     this.setState(prevState => ({
-      currentBook: prevState.currentBook.notes.filter(note => {
-        return note.id !== parseInt(noteId)
-      })
+      currentBook: {
+        ...prevState.currentBook,
+        notes: prevState.currentBook.notes.filter(note => {
+          return note.id !== parseInt(noteId)
+        })
+      }
     }))
   }
 
@@ -233,9 +237,18 @@ class App extends React.Component {
   submitUserUpdate = async (e) => {
     e.preventDefault();
     const userData = this.state.userForm;
-    await updateUser(this.state.currentUser.id, { user_img: userData.user_img })
+    const newPhoto = await updateUser(this.state.currentUser.id, { user_img: userData.user_img })
+    console.log(newPhoto)
+    this.setState(prevState => ({
+      currentUser: {
+        ...prevState.currentUser,
+        user_img: [newPhoto.user.user_img, prevState.user_img]
+      }
+    }))
     this.props.history.push("/")
   }
+
+
 
   handleBookUpdateChange = (e) => {
     let name = e.target.name;
@@ -291,10 +304,10 @@ class App extends React.Component {
 
             <Route path="/books/:id/add-note" render={(props) => (<CreateNotes noteForm={this.state.noteForm} id={props.match.params.id} createNotesSubmit={this.createNotesSubmit} handleNoteCreateChange={this.handleNoteCreateChange} />)} />
 
-            <Route path="/users/:id" render={(props) => (<EditUser id={props.match.params.id} handleUserChange={this.handleUserChange} userForm={this.state.userForm} submitUserUpdate={this.submitUserUpdate} />)} />
-          <Route path="/books/:id/update" render={(props) => (<UpdateBook id={props.match.params.id} bookUpdateSubmit={this.bookUpdateSubmit} handleBookUpdateChange={this.handleBookUpdateChange} bookForm={this.state.bookForm} currentUser={this.state.currentUser} />)} />
-          
-          <Route path="/finished-reading" render={() => (<FinishedReading newBook={this.state.newBook} currentUser={this.state.currentUser}/>)}/>
+            <Route path="/users/:id" render={(props) => (<EditUser id={props.match.params.id} handleUserChange={this.handleUserChange} userForm={this.state.userForm} submitUserUpdate={this.submitUserUpdate} handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>)} />
+            <Route path="/books/:id/update" render={(props) => (<UpdateBook id={props.match.params.id} bookUpdateSubmit={this.bookUpdateSubmit} handleBookUpdateChange={this.handleBookUpdateChange} bookForm={this.state.bookForm} currentUser={this.state.currentUser} />)} />
+
+            <Route path="/finished-reading" render={() => (<FinishedReading newBook={this.state.newBook} currentUser={this.state.currentUser} />)} />
 
           </>
         }
