@@ -1,11 +1,20 @@
 import React from 'react';
+import { randomQuote } from '../services/api-helper';
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: null
+      currentUser: null,
+      quote:""
     }
+  }
+
+  componentDidMount = async () => {
+    const quote = await randomQuote();
+    this.setState({
+      quote
+    })
   }
 
   render() {
@@ -16,7 +25,8 @@ class Register extends React.Component {
       <div id="register-page">
         <div id="register-form-div">
           <form onSubmit={this.props.handleRegister} id="register-form">
-            <h5>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo assumenda vero, cum sequi quam, sint iusto praesentium fugit perferendis amet earum repellendus laudantium numquam fuga rerum quo nihil hic quas?"</h5>
+            <h5>{this.state.quote.quoteText}</h5>
+            <p>{this.state.quote.quoteAuthor}</p>
             <input type="text" name="username" placeholder="User name..." value={username} onChange={this.props.handleChange} />
             <input type="text" name="user_img" placeholder="Profile picture..." value={user_img} onChange={this.props.handleChange} />
             <input type="password" name="password" placeholder="Password(atleast 6 characters)..." value={password} onChange={this.props.handleChange} />

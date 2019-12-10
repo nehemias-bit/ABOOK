@@ -18,7 +18,6 @@ class NotesController < ApplicationController
   def create
     @book=Book.find(params[:book_id])
     @note=@book.notes.new(note_params)
-    # @note = Book.find(params[:book_id]).notes.new(note_params)
     if @note.save
       render json: @note
     else

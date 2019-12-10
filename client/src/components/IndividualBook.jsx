@@ -45,7 +45,7 @@ export default class IndividualBook extends Component {
                 this.props.currentBook.notes && this.props.currentBook.notes.map(each => (
                   <>
                    <p>{each.note}</p>
-                   <button onClick={() => (this.props.deleteNote(each.id))} id="delete-note">delete note</button>
+                   <button onClick={() => (this.props.deleteNote(each.id))} id="delete-note">discard</button>
                   </>   
                   )) 
                 }

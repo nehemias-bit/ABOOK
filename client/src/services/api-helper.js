@@ -87,4 +87,9 @@ export const deleteNote = async (bookId, noteId) => {
   return response.data
 }
 
-//=========
+//=========Random Quote======//
+
+export const randomQuote = async () => {
+  const response = await api.get("https://quote-garden.herokuapp.com/quotes/random")
+  return response.data
+}

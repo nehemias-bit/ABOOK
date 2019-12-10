@@ -1,12 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { randomQuote } from '../services/api-helper';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: null
+      currentUser: null,
+      quote: ""
     }
+  }
+
+  componentDidMount = async() => {
+    const quote = await randomQuote();
+    this.setState({
+      quote
+    })
   }
 
   render() {
@@ -22,7 +31,8 @@ class Login extends React.Component {
             <img src="https://i.imgur.com/ChiijlH.png" alt="drawing of books"/>
           </form>
         </div>
-        <h2>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo error molestias id quaerat eius excepturi incidunt. Illo alias ipsum, at, corrupti architecto aspernatur quos tempora sit vero saepe dolorem repellat."</h2>
+        <h2 id="quote">{this.state.quote.quoteText}</h2>
+        <h4 id="quote-author">-{this.state.quote.quoteAuthor}</h4>
       </div>
     )
   }

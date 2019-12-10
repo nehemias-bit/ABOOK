@@ -23,7 +23,7 @@ import CreateNotes from './components/CreateNotes';
 import EditUser from './components/EditUser';
 import UpdateBook from './components/UpdateBook';
 import FinishedReading from './components/FinishedReading';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   constructor(props) {
@@ -133,7 +133,8 @@ class App extends React.Component {
       bookForm: {
         ...prevState.bookForm,
         user_id: currentUser.id
-      }
+      },
+      newBook: currentUser.books
     }))
     this.props.history.push("/")
   }
@@ -199,10 +200,10 @@ class App extends React.Component {
 
   createNotesSubmit = async (e) => {
     e.preventDefault();
-    await createNotes(this.state.currentBook.id, { note: this.state.noteForm });
-    // this.setState(prevState => ({
-    //   currentBook.notes: [note, ...prevState.currentBook.notes]
-    // }))
+    const note = await createNotes(this.state.currentBook.id, { note: this.state.noteForm });
+    this.setState(prevState => ({
+      currentBook: [note, ...prevState.currentBook]
+    }))
     this.props.history.push(`/books/${this.state.currentBook.id}`)
   }
 
@@ -272,7 +273,7 @@ class App extends React.Component {
         {this.state.currentUser &&
           <>
             <Route exact path="/"
-              render={(props) => (
+              render={() => (
                 <HomePage
                   newBook={this.state.newBook}
                   handleLogout={this.handleLogout} currentUser={this.state.currentUser} />)} />
@@ -298,7 +299,7 @@ class App extends React.Component {
         }
 
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }
