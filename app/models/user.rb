@@ -7,4 +7,3 @@ class User < ApplicationRecord
   has_many :books, dependent: :delete_all
   
 end
-# ,:if=>:password
