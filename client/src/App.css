@@ -448,6 +448,8 @@ outline: none;
   justify-content: center;
   margin-top: 40px;
   min-height: 100vh;
+  margin-bottom: 140px;
+  grid-row-gap: 140px;
 }
 
 #completed {

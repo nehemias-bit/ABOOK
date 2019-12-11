@@ -35,7 +35,7 @@ export default class IndividualBook extends Component {
                 <div id="individual-book-cover-buttons">
                 <button id="delete-book" onClick={() => (this.props.deleteTheBook(this.props.id))}>Delete </button>
                 <Link to={`/books/${this.props.id}/update`}><button id="update-book" style={{display: this.props.currentBook.finished === true ? 'none' : 'inline-block' }}>Update</button></Link>
-                <button style={{display: this.props.currentBook.finished === true ? 'none' : 'block' }} onClick={this.props.updateBookIsFinished}id="finished-button">Finished</button>
+                <button style={{display: this.props.currentBook.finished === true ? 'none' : 'block' }} onClick={this.props.updateBookIsFinished} id="finished-button">Finished</button>
                 </div>  
               </div>
             <div id="notes">

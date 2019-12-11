@@ -96,9 +96,11 @@ class App extends React.Component {
       finished: "true"
     };
     const readBook = await updateABook(this.state.currentBook.id, bookForm);
-    this.setState({
-      readBook
-    })
+    this.setState(prevState => ({
+      newBook: prevState.newBook.map(book => {
+        return book.id === readBook.id ? readBook : book
+      })
+    }))
     this.props.history.push("/");
   }
 
@@ -302,7 +304,7 @@ class App extends React.Component {
             <Route path="/books/:id/add-note" render={(props) => (<CreateNotes noteForm={this.state.noteForm} id={props.match.params.id} createNotesSubmit={this.createNotesSubmit} handleNoteCreateChange={this.handleNoteCreateChange} />)} />
 
             <Route path="/users/:id" render={(props) => (<EditUser id={props.match.params.id} handleUserChange={this.handleUserChange} userForm={this.state.userForm} submitUserUpdate={this.submitUserUpdate} handleLogout={this.handleLogout} currentUser={this.state.currentUser} />)} />
-            
+
             <Route path="/books/:id/update" render={(props) => (<UpdateBook id={props.match.params.id} bookUpdateSubmit={this.bookUpdateSubmit} handleBookUpdateChange={this.handleBookUpdateChange} bookForm={this.state.bookForm} currentUser={this.state.currentUser} />)} />
 
             <Route path="/finished-reading" render={() => (<FinishedReading newBook={this.state.newBook} currentUser={this.state.currentUser} />)} />
