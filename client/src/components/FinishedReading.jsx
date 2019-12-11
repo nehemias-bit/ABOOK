@@ -9,7 +9,7 @@ export default function FinishedReading(props) {
         props.currentUser &&
       <>
         <LoggedInHeader handleLogout={props.handleLogout} currentUser={props.currentUser} />
-            <h1 id="completed">Completed<span>...</span></h1>
+          <h1 id="completed">Completed<span>...</span></h1>
           <div className="finished-page-books">
           {
             props.newBook.map(each => (
@@ -23,7 +23,7 @@ export default function FinishedReading(props) {
                 </div> : null
             ))
           }
-        </div>
+          </div>
       </>
       }
     </div>

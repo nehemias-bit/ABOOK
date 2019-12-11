@@ -248,8 +248,6 @@ class App extends React.Component {
     this.props.history.push("/")
   }
 
-
-
   handleBookUpdateChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -282,9 +280,8 @@ class App extends React.Component {
           </>
         }
 
-
-
-        {this.state.currentUser &&
+        {
+          this.state.currentUser &&
           <>
             <Route exact path="/"
               render={() => (
@@ -304,15 +301,14 @@ class App extends React.Component {
 
             <Route path="/books/:id/add-note" render={(props) => (<CreateNotes noteForm={this.state.noteForm} id={props.match.params.id} createNotesSubmit={this.createNotesSubmit} handleNoteCreateChange={this.handleNoteCreateChange} />)} />
 
-            <Route path="/users/:id" render={(props) => (<EditUser id={props.match.params.id} handleUserChange={this.handleUserChange} userForm={this.state.userForm} submitUserUpdate={this.submitUserUpdate} handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>)} />
+            <Route path="/users/:id" render={(props) => (<EditUser id={props.match.params.id} handleUserChange={this.handleUserChange} userForm={this.state.userForm} submitUserUpdate={this.submitUserUpdate} handleLogout={this.handleLogout} currentUser={this.state.currentUser} />)} />
+            
             <Route path="/books/:id/update" render={(props) => (<UpdateBook id={props.match.params.id} bookUpdateSubmit={this.bookUpdateSubmit} handleBookUpdateChange={this.handleBookUpdateChange} bookForm={this.state.bookForm} currentUser={this.state.currentUser} />)} />
 
             <Route path="/finished-reading" render={() => (<FinishedReading newBook={this.state.newBook} currentUser={this.state.currentUser} />)} />
 
           </>
         }
-
-
         <Footer />
       </div>
     );

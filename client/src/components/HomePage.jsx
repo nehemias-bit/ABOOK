@@ -16,9 +16,6 @@ export default class HomePage extends Component {
     console.log(childrenCount)
   }
 
-
-
-
   render() {
     return (
       <>
@@ -29,9 +26,10 @@ export default class HomePage extends Component {
             <Link to={`/add-book/${this.props.currentUser.id}`}><button id="add-a-book">Add a Book</button></Link>
             <Link to="/finished-reading"><button>The Finished Ones</button></Link>
           </div>  
-       </div>
+        </div>
         <div ref="mainPageBooks" className="main-page-books">
-          { this.props.newBook &&
+          {
+            this.props.newBook &&
             this.props.newBook.filter(each => (this.props.currentUser.id === each.user_id)).map(each => (
               <div key={each.id} id="cover-author-title-div" style={{display: each.finished === true ? 'none' : 'block' }} >
                 <Link to={`/books/${each.id}`}><img src={each.book_cover} alt="book cover" id="main-page-book-cover" /></Link>
@@ -42,7 +40,7 @@ export default class HomePage extends Component {
               </div>  
             ))
           }
-       </div>
+        </div>
       </>
     )
   }

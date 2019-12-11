@@ -27,21 +27,21 @@ export default class LoggedInHeader extends Component {
         <div id="user-img-name-div">
           {
             this.props.currentUser &&
-          <>
-          <Link to="/"><h1>abook</h1></Link>    
-          <div id="img-div">
-          <a href="#" id="img-a"><img src={this.props.currentUser.user_img} alt="users profile" id="user-img"  onClick={() => this.hideLogOutAndEdit()}/></a>
-          <a href="#" onClick={() => this.showLogOutAndEdit()} id="username"><p>{this.props.currentUser.username}</p></a>
-          </div>
-          </>
+            <>
+            <Link to="/"><h1>abook</h1></Link>    
+            <div id="img-div">
+              <a href="#" id="img-a"><img src={this.props.currentUser.user_img} alt="users profile" id="user-img"  onClick={() => this.hideLogOutAndEdit()}/></a>
+              <a href="#" onClick={() => this.showLogOutAndEdit()} id="username"><p>{this.props.currentUser.username}</p></a>
+            </div>
+            </>
           }
         </div> 
         {
           this.state.showMe ?
-        <div id="logout-edit-user">
-          <Link to="/login"><button id="logout-button"onClick={this.props.handleLogout}>Logout</button></Link>
-          <Link to={`users/${this.props.currentUser.id}`} onClick={() => this.showLogOutAndEdit()}>Profile Picture</Link>    
-        </div> : null
+          <div id="logout-edit-user">
+            <Link to="/login"><button id="logout-button"onClick={this.props.handleLogout}>Logout</button></Link>
+            <Link to={`users/${this.props.currentUser.id}`} onClick={() => this.showLogOutAndEdit()}>Profile Picture</Link>    
+          </div> : null
         }
       </div>
     )

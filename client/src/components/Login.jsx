@@ -23,9 +23,9 @@ class Login extends React.Component {
       <div id="login-page">
         <div id="login-form-div">
           <form onSubmit={this.props.loginSubmit} id="login-form">
-          <h1>abook</h1>  
-          <input type="text" name="username" placeholder="username..." value={this.props.loginForm} onChange={this.props.handleLoginChange}/>
-          <input type="password" name="password" placeholder="password..." value={this.props.loginForm}  onChange={this.props.handleLoginChange}/>
+            <h1>abook</h1>  
+            <input type="text" name="username" placeholder="username..." value={this.props.loginForm} onChange={this.props.handleLoginChange}/>
+            <input type="password" name="password" placeholder="password..." value={this.props.loginForm}  onChange={this.props.handleLoginChange}/>
             <button>Login</button>
             <Link to="/register">Register</Link>
             <img src="https://i.imgur.com/ChiijlH.png" alt="drawing of books"/>
