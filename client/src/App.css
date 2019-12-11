@@ -496,6 +496,8 @@ outline: none;
   justify-content: center;
   margin-top: 50px;
   min-height: 100vh;
+  margin-bottom: 140px;
+  grid-row-gap: 140px;
 }
 
 .main-page-books img {
