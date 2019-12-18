@@ -12,7 +12,7 @@ export default function FinishedReading(props) {
           <h1 id="completed">Completed<span>...</span></h1>
           <div className="finished-page-books">
           {
-            props.newBook.map(each => (
+            props.newBook.filter(each => (props.currentUser.id === each.user_id)).map(each => (
               each.finished === true ?
                 <div id="finished-cover-author-title-div">
                   <Link to={`/books/${each.id}`}><img src={each.book_cover} alt="book cover"/></Link>

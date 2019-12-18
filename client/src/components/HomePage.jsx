@@ -12,7 +12,7 @@ export default class HomePage extends Component {
   }
 
   componentDidMount = () => {
-    let childrenCount = this.refs.mainPageBooks.children.length;
+    // let childrenCount = this.refs.mainPageBooks.children.length;
     // console.log(childrenCount)
   }
 
