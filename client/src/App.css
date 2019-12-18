@@ -504,6 +504,8 @@ outline: none;
 
 .main-page-books img {
   width: 80%;
+  height: 350px;
+  object-fit: cover;
 }
 
 .main-page-books img:hover {
